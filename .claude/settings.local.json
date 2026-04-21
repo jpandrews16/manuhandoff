@@ -15,7 +15,8 @@
       "Bash(git push *)",
       "Bash(pnpm install *)",
       "Bash(npm install *)",
-      "Bash(DATABASE_URL=\"mysql://root:iFnurigggQzTpoZeVgmEcHdfNnHlroFt@shinkansen.proxy.rlwy.net:49759/railway\" pnpm run db:push)"
+      "Bash(DATABASE_URL=\"mysql://root:iFnurigggQzTpoZeVgmEcHdfNnHlroFt@shinkansen.proxy.rlwy.net:49759/railway\" pnpm run db:push)",
+      "Bash(pnpm add *)"
     ]
   }
 }

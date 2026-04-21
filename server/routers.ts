@@ -1,7 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { scrypt, randomBytes, timingSafeEqual } from "node:crypto";
-import { promisify } from "node:util";
+import bcrypt from "bcryptjs";
 import { nanoid } from "nanoid";
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
@@ -304,20 +303,12 @@ const sessionsRouter = router({
 
 // ─── Password Helpers ────────────────────────────────────────────────────────
 
-const scryptAsync = promisify(scrypt);
-
 async function hashPassword(password: string): Promise<string> {
-  const salt = randomBytes(16).toString("hex");
-  const buf = (await scryptAsync(password, salt, 64)) as Buffer;
-  return `${buf.toString("hex")}.${salt}`;
+  return bcrypt.hash(password, 10);
 }
 
 async function verifyPassword(supplied: string, stored: string): Promise<boolean> {
-  const [hashed, salt] = stored.split(".");
-  if (!hashed || !salt) return false;
-  const hashedBuf = Buffer.from(hashed, "hex");
-  const suppliedBuf = (await scryptAsync(supplied, salt, 64)) as Buffer;
-  return timingSafeEqual(hashedBuf, suppliedBuf);
+  return bcrypt.compare(supplied, stored);
 }
 
 // ─── App Router ───────────────────────────────────────────────────────────────
