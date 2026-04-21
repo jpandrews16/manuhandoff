@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1776743149129,
+      "tag": "0000_charming_the_fallen",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1776743321572,
+      "tag": "0001_flawless_jackpot",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1776743352657,
+      "tag": "0002_fuzzy_wendell_rand",
+      "breakpoints": true
+    }
+  ]
+}

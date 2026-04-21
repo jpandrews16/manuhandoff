@@ -1,0 +1,9 @@
+[build]
+builder = "nixpacks"
+buildCommand = "pnpm install && pnpm run build"
+
+[deploy]
+startCommand = "pnpm start"
+healthcheckPath = "/api/trpc/system.ping"
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3

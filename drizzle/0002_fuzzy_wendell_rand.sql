@@ -1,0 +1,1 @@
+ALTER TABLE `task_memory` MODIFY COLUMN `content` longtext NOT NULL;
