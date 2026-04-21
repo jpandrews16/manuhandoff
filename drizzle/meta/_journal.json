@@ -22,6 +22,13 @@
       "when": 1776743352657,
       "tag": "0002_fuzzy_wendell_rand",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1776749836122,
+      "tag": "0003_pretty_blazing_skull",
+      "breakpoints": true
     }
   ]
 }
