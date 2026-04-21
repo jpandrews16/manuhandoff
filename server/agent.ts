@@ -264,7 +264,7 @@ async function handlePhaseError(
       return;
     } catch (retryError: any) {
       await logError(taskId, retryError.message, tryNum);
-      if (tryNum < 3) await new Promise((r) => setTimeout(r, 1000 * tryNum));
+      if (tryNum < 3) await new Promise((r) => setTimeout(r, 5000 * tryNum));
     }
   }
 

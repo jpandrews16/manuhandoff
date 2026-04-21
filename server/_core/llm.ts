@@ -309,21 +309,31 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
     payload.response_format = normalizedResponseFormat;
   }
 
-  const response = await fetch(resolveApiUrl(), {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      authorization: `Bearer ${ENV.forgeApiKey}`,
-    },
-    body: JSON.stringify(payload),
-  });
+  const url = resolveApiUrl();
+  const headers = {
+    "content-type": "application/json",
+    authorization: `Bearer ${ENV.forgeApiKey}`,
+  };
+  const body = JSON.stringify(payload);
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(
-      `LLM invoke failed: ${response.status} ${response.statusText} – ${errorText}`
-    );
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const response = await fetch(url, { method: "POST", headers, body });
+
+    if (response.status === 503) {
+      const wait = 3000 * (attempt + 1);
+      await new Promise((r) => setTimeout(r, wait));
+      continue;
+    }
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(
+        `LLM invoke failed: ${response.status} ${response.statusText} – ${errorText}`
+      );
+    }
+
+    return (await response.json()) as InvokeResult;
   }
 
-  return (await response.json()) as InvokeResult;
+  throw new Error("LLM invoke failed: too many 503 errors from Gemini, try again later");
 }
