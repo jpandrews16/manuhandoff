@@ -296,7 +296,7 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
     payload.tool_choice = normalizedToolChoice;
   }
 
-  payload.max_tokens = 8192
+  payload.max_tokens = params.maxTokens || params.max_tokens || 1024
 
   const normalizedResponseFormat = normalizeResponseFormat({
     responseFormat,
@@ -316,12 +316,11 @@ export async function invokeLLM(params: InvokeParams): Promise<InvokeResult> {
   };
   const body = JSON.stringify(payload);
 
-  for (let attempt = 0; attempt < 4; attempt++) {
+  for (let attempt = 0; attempt < 2; attempt++) {
     const response = await fetch(url, { method: "POST", headers, body });
 
     if (response.status === 503) {
-      const wait = 3000 * (attempt + 1);
-      await new Promise((r) => setTimeout(r, wait));
+      await new Promise((r) => setTimeout(r, 4000));
       continue;
     }
 
