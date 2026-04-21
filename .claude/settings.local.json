@@ -6,7 +6,10 @@
       "Bash(unzip -p planning-with-files-master.zip planning-with-files-master/skills/planning-with-files/SKILL.md)",
       "Bash(grep -v \"/$\")",
       "Bash(awk '{print $NF}')",
-      "Bash(xargs cat *)"
+      "Bash(xargs cat *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
     ]
   }
 }
