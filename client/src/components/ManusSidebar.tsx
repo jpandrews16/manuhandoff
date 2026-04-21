@@ -3,6 +3,7 @@ import { useLocation } from "wouter";
 import { Plus, Zap, Search, BookOpen, FolderOpen, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { HandoffLogo } from "@/components/HandoffLogo";
 
 export default function ManusSidebar() {
   const [location, navigate] = useLocation();
@@ -29,9 +30,7 @@ export default function ManusSidebar() {
       {/* Logo */}
       <div className="px-3 py-3 border-b border-[#333]">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-            <span className="text-white font-bold text-xs">H</span>
-          </div>
+          <HandoffLogo size={28} />
           <span className="font-semibold text-white text-sm truncate">handoff</span>
         </div>
       </div>

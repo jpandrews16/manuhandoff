@@ -1,14 +1,13 @@
 import { Bell, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { HandoffLogo } from "@/components/HandoffLogo";
 
 export default function ManusHeader() {
   return (
     <div className="h-14 bg-[#0a0a0a] border-b border-[#333] flex items-center justify-between px-6">
       {/* Left - Logo & Version */}
       <div className="flex items-center gap-2">
-        <div className="w-5 h-5 rounded bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-          <span className="text-white font-bold text-xs">H</span>
-        </div>
+        <HandoffLogo size={22} />
         <span className="text-xs font-medium text-white">Handoff 1.0</span>
         <ChevronDown className="w-3 h-3 text-[#666]" />
       </div>
