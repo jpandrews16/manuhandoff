@@ -1,11 +1,10 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch, useLocation } from "wouter";
+import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
 import ManusSidebar from "./components/ManusSidebar";
 import ManusHeader from "./components/ManusHeader";
 import NewTask from "./pages/NewTask";
@@ -14,9 +13,6 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 
 function AppShell() {
-  const [location] = useLocation();
-  if (location === "/login") return <Login />;
-
   return (
     <div className="flex h-screen bg-background text-foreground">
       <ManusSidebar />
